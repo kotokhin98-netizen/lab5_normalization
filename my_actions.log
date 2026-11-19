@@ -1,0 +1,36 @@
+2026-11-19T08:15:10.108828Z	    9 Query	
+2026-11-19T08:16:10.715846Z	    9 Query	select @@version_comment limit 1
+2026-11-19T08:16:17.380148Z	    9 Query	CREATE DATABASE orders_norm CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+2026-11-19T08:16:17.408444Z	    9 Query	CREATE TABLE orders_unnormalized (
+2026-11-19T08:16:18.436922Z	    9 Query	INSERT INTO orders_unnormalized VALUES
+2026-11-19T08:16:24.954951Z	    9 Query	SELECT * FROM orders_unnormalized
+2026-11-19T08:16:25.932643Z	    9 Query	SELECT SUM(price * quantity) AS total FROM orders_unnormalized
+2026-11-19T08:16:32.131978Z	    9 Query	UPDATE orders_unnormalized 
+2026-11-19T08:16:32.644150Z	    9 Query	SELECT * FROM orders_unnormalized WHERE category_id = 1
+2026-11-19T08:16:37.786461Z	    9 Query	DELETE FROM orders_unnormalized WHERE order_id = 3003
+2026-11-19T08:16:38.506004Z	    9 Query	SELECT * FROM orders_unnormalized WHERE customer_id = 103
+2026-11-19T08:16:45.208229Z	    9 Query	INSERT INTO orders_unnormalized VALUES
+2026-11-19T08:16:51.831962Z	    9 Query	INSERT INTO orders_unnormalized (category_id, category_name) 
+2026-11-19T08:16:52.516822Z	    9 Query	SELECT * FROM orders_unnormalized WHERE category_id = 99
+2026-11-19T08:16:58.364181Z	    9 Query	DELETE FROM orders_unnormalized WHERE category_id = 99
+2026-11-19T08:17:04.559836Z	    9 Query	UPDATE orders_unnormalized 
+2026-11-19T08:17:05.572200Z	    9 Query	SELECT SUM(price * quantity) AS total FROM orders_unnormalized
+2026-11-19T08:17:59.641128Z	   11 Query	select @@version_comment limit 1
+2026-11-19T08:18:04.379943Z	   11 Query	CREATE TABLE customers (
+2026-11-19T08:18:04.458843Z	   11 Query	CREATE TABLE categories (
+2026-11-19T08:18:04.536594Z	   11 Query	CREATE TABLE products (
+2026-11-19T08:18:04.621348Z	   11 Query	CREATE TABLE orders (
+2026-11-19T08:18:05.310555Z	   11 Query	CREATE TABLE order_items (
+2026-11-19T08:18:11.590823Z	   11 Query	INSERT INTO customers (customer_id, customer_name)
+2026-11-19T08:18:11.603570Z	   11 Query	INSERT INTO categories (category_id, category_name)
+2026-11-19T08:18:11.617217Z	   11 Query	INSERT INTO products (product_id, product_name, price, category_id)
+2026-11-19T08:18:11.636702Z	   11 Query	INSERT INTO orders (order_id, order_date, customer_id)
+2026-11-19T08:18:12.291325Z	   11 Query	INSERT INTO order_items (order_id, product_id, quantity)
+2026-11-19T08:18:19.791633Z	   11 Query	SELECT SUM(price * quantity) AS total_old FROM orders_unnormalized
+2026-11-19T08:18:19.793218Z	   11 Query	SELECT SUM(p.price * oi.quantity) AS total_new
+2026-11-19T08:18:19.794397Z	   11 Query	SELECT COUNT(*) AS customers FROM customers
+2026-11-19T08:18:19.795937Z	   11 Query	SELECT COUNT(*) AS categories FROM categories
+2026-11-19T08:18:19.797399Z	   11 Query	SELECT COUNT(*) AS products FROM products
+2026-11-19T08:18:19.798583Z	   11 Query	SELECT COUNT(*) AS orders FROM orders
+2026-11-19T08:18:20.701160Z	   11 Query	SELECT COUNT(*) AS items FROM order_items
+2026-11-19T08:18:28.570452Z	   11 Query	SELECT SUM(p.price * oi.quantity) AS total_sales
